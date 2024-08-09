@@ -28,6 +28,14 @@ CREATE TABLE "User" (
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "AssignedByToAssignedTo" (
+    "assignedById" TEXT NOT NULL,
+    "assignedToId" TEXT NOT NULL,
+
+    CONSTRAINT "AssignedByToAssignedTo_pkey" PRIMARY KEY ("assignedById","assignedToId")
+);
+
 -- AddForeignKey
 ALTER TABLE "Task" ADD CONSTRAINT "Task_createUserId_fkey" FOREIGN KEY ("createUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -36,3 +44,9 @@ ALTER TABLE "SubTask" ADD CONSTRAINT "SubTask_taskId_fkey" FOREIGN KEY ("taskId"
 
 -- AddForeignKey
 ALTER TABLE "SubTask" ADD CONSTRAINT "SubTask_responsibleUserId_fkey" FOREIGN KEY ("responsibleUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AssignedByToAssignedTo" ADD CONSTRAINT "AssignedByToAssignedTo_assignedById_fkey" FOREIGN KEY ("assignedById") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AssignedByToAssignedTo" ADD CONSTRAINT "AssignedByToAssignedTo_assignedToId_fkey" FOREIGN KEY ("assignedToId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

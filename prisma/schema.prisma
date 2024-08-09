@@ -38,4 +38,14 @@ model User {
   email         String
   tasks         Task[]     
   subTasks      SubTask[]
+  assignedBy    AssignedByToAssignedTo[] @relation("AssignedByRelation")
+  assignedTo    AssignedByToAssignedTo[] @relation("AssignedToRelation")
+}
+
+model AssignedByToAssignedTo {
+  assignedById  String
+  assignedBy    User       @relation("AssignedByRelation", fields: [assignedById], references: [id])
+  assignedToId  String
+  assignedTo    User       @relation("AssignedToRelation", fields: [assignedToId], references: [id])
+  @@id([assignedById, assignedToId])
 }
