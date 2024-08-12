@@ -1,6 +1,7 @@
 
 // 'use client';
 import { auth } from '@/lib/auth';
+import AssignedUser from './_components/AssignedUser';
 // import React, { useEffect, useState } from 'react';
 
 const TaskCard = async ({params}: { params: { taskId: string } }) => {
@@ -23,18 +24,25 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
     return data.tasks
   };
 
-  const tasks = await fetchTasks();
-  // console.log("tasks")
-  // console.log(tasks);
+  const fetchAssignedUsers = async () => {
+    
+    const response = await fetch(`http://localhost:3000/api/users/${userId}/assignedUsers`);
+    // console.log(response);
+    const data = await response.json();
+    return data.users
+  };
 
+  const tasks = await fetchTasks();
+  const assignedUsers = await fetchAssignedUsers();
+  
   return (
     <div>
-      {tasks.map((task) => (
+      {tasks.map((task: any) => (
         <div key={task.id} className="task-card">
           <h2>{task.title}</h2>
           <p>Created by: {task.createUser.name}</p>
           <div className="subtasks">
-            {task.subTasks.map((subTask) => {
+            {task.subTasks.map((subTask: any) => {
               // console.log("subTask");
               // console.log(subTask);
               return (
@@ -43,6 +51,7 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
                   <p>Deadline: {new Date(subTask.deadline).toLocaleDateString()}</p>
                   <p>Description: {subTask.description}</p>
                   <p>Assigned to: {subTask.responsibleUser.name}</p>
+                  <p>Assigned Users: {assignedUsers.map((user: any) => <AssignedUser user={user} taskId={taskId} subtaskId={subTask.id} />)}</p>
                 </div>
               );
             })}
