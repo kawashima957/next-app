@@ -129,6 +129,13 @@ async function main() {
       },
     });
 
+    const assigmnent4 = await prisma.assignedByToAssignedTo.create({
+      data: {
+        assignedById: userBob.id,
+        assignedToId: userAlice.id,
+      },
+    });
+
     // 追加のサブタスクを作成
     const subTask4_1 = await prisma.subTask.create({
       data: {
