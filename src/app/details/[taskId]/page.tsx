@@ -1,7 +1,7 @@
 
 // 'use client';
 import { auth } from '@/lib/auth';
-import AssignedUser from './_components/AssignedUser';
+import SubTaskCard from './_components/SubTaskCard'; // SubTaskCardをインポート
 // import React, { useEffect, useState } from 'react';
 
 const TaskCard = async ({params}: { params: { taskId: string } }) => {
@@ -41,20 +41,18 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
         <div key={task.id} className="task-card">
           <h2>{task.title}</h2>
           <p>Created by: {task.createUser.name}</p>
-          <div className="subtasks">
-            {task.subTasks.map((subTask: any) => {
-              // console.log("subTask");
-              // console.log(subTask);
-              return (
-                <div key={subTask.id} className="subtask-card">
-                  <h3>{subTask.title}</h3>
-                  <p>Deadline: {new Date(subTask.deadline).toLocaleDateString()}</p>
-                  <p>Description: {subTask.description}</p>
-                  <p>Assigned to: {subTask.responsibleUser.name}</p>
-                  <p>Assigned Users: {assignedUsers.map((user: any) => <AssignedUser user={user} taskId={taskId} subtaskId={subTask.id} />)}</p>
+          <div>
+            {tasks.map((task: any) => (
+              <div key={task.id} className="task-card">
+                <h2>{task.title}</h2>
+                <p>Created by: {task.createUser.name}</p>
+                <div className="subtasks">
+                  {task.subTasks.map((subTask: any) => (
+                    <SubTaskCard subTask={subTask} taskId={taskId} assignedUsers={assignedUsers} /> // SubTaskCardコンポーネントを使用
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       ))}
