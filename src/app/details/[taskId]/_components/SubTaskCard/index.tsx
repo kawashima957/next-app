@@ -4,8 +4,9 @@ import React, { useState } from 'react'; // useStateをインポート
 import AssignedUser from '../AssignedUser';
 import AssignedUserForm from '../AssignedUserForm';
 
-const SubTaskCard = ({ userId, subTask, taskId, assignedUsers }: { userId: string, subTask: any, taskId: string, assignedUsers: any[] }) => {
+const SubTaskCard = ({ userId, subTask, taskId, initialAssignedUsers }: { userId: string, subTask: any, taskId: string, initialAssignedUsers: any[] }) => {
     const [responsibleUser, setResponsibleUser] = useState(subTask.responsibleUser); // responsibleUserの状態を管理
+    const [assignedUsers, setAssignedUsers] = useState(initialAssignedUsers); // assignedUsersの状態を管理
 
     const handleUserClick = (user: any) => {
       setResponsibleUser(user);
@@ -13,6 +14,7 @@ const SubTaskCard = ({ userId, subTask, taskId, assignedUsers }: { userId: strin
 
     const handleUserFound = (user: any) => { // 新しいユーザーが見つかったときの処理
       setResponsibleUser(user);
+      setAssignedUsers([...assignedUsers, user]); // 新しいユーザーをassignedUsersに追加
     };
 
   return (
