@@ -50,10 +50,9 @@ export async function POST(
     { params }: { params: { userId: string } }
 ) {
     const userId = params.userId;
-    const { assignedUserEmail } = await request.json();
+    const { assignedUserId } = await request.json();
     console.log("userId", userId);
-    console.log("assignedUserEmail", assignedUserEmail);
-    if (!userId || !assignedUserEmail) {
+    if (!userId || !assignedUserId) {
         return new Response(JSON.stringify({ error: 'userId and assignedUserEmail are required' }), {
             status: 400,
             headers: { 'Content-Type': 'application/json' },
@@ -63,7 +62,7 @@ export async function POST(
     // メールアドレスからユーザーを検索
     const assignedUser = await prisma.user.findUnique({
         where: {
-            email: assignedUserEmail,
+            id: assignedUserId,
         },
     });
 

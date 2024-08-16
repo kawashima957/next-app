@@ -4,7 +4,7 @@ import React, { useState } from 'react'; // useStateをインポート
 import AssignedUser from '../AssignedUser';
 import AssignedUserForm from '../AssignedUserForm';
 
-const SubTaskCard = ({ subTask, taskId, assignedUsers }: { subTask: any, taskId: string, assignedUsers: any[] }) => {
+const SubTaskCard = ({ userId, subTask, taskId, assignedUsers }: { userId: string, subTask: any, taskId: string, assignedUsers: any[] }) => {
     const [responsibleUser, setResponsibleUser] = useState(subTask.responsibleUser); // responsibleUserの状態を管理
 
     const handleUserClick = (user: any) => {
@@ -23,7 +23,7 @@ const SubTaskCard = ({ subTask, taskId, assignedUsers }: { subTask: any, taskId:
       <p>Assigned to: {responsibleUser.name}</p>
       <p>Assigned Users: {assignedUsers.map((user: any) => <AssignedUser key={user.id} user={user} taskId={taskId} subtaskId={subTask.id} onUserClick={handleUserClick} />)}</p>
       <div>New Assigned User: 
-          <AssignedUserForm onUserFound={handleUserFound} />
+        <AssignedUserForm userId={userId} taskId={taskId} subtaskId={subTask.id} onUserFound={handleUserFound} />
       </div>
     </div>
   );
