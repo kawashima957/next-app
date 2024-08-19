@@ -55,7 +55,6 @@ export async function GET(
     // const url = new URL(request.url);
     // const userId = url.searchParams.get('userId');
     const userId = params.userId;
-    console.log("userId", userId);
     if (!userId) {
         return new Response(JSON.stringify({ error: 'userId is required' }), {
             status: 400,
@@ -63,7 +62,6 @@ export async function GET(
         });
     }
     const tasks = await getTasksAndSubTasks(userId);
-    console.log(tasks);
     return new Response(JSON.stringify({ tasks }), {
         headers: { 'Content-Type': 'application/json' },
     });

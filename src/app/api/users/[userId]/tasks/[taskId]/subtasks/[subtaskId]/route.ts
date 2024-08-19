@@ -24,10 +24,6 @@ export async function PUT(
     const taskId = params.taskId;
     const subtaskId = params.subtaskId;
     const { assignedUserId } = await request.json();
-    console.log("userId", userId);
-    console.log("taskId", taskId);
-    console.log("subtaskId", subtaskId);
-    console.log("assignedUserId", assignedUserId);
     if (!userId || !taskId || !subtaskId || !assignedUserId) {
         return new Response(JSON.stringify({ error: 'userId, taskId, subtaskId and assignedUserId are required' }), {
             status: 400,
@@ -35,7 +31,6 @@ export async function PUT(
         });
     }
     const updatedSubTask = await assignUserToSubTask(userId, taskId, subtaskId, assignedUserId);
-    console.log(updatedSubTask);
     return new Response(JSON.stringify({ updatedSubTask }), {
         headers: { 'Content-Type': 'application/json' },
     });

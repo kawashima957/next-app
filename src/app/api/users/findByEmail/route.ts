@@ -6,7 +6,6 @@ export async function POST(
   request: Request,
 ) {
   const { email } = await request.json(); // リクエストボディからメールアドレスを取得
-  console.log("email", email);
 
   try {
     const user = await prisma.user.findUnique({ where: { email } }); // メールアドレスに対応するユーザーを取得

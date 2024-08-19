@@ -10,7 +10,6 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
   console.log(session)
   const userId = session?.user?.id;
   const taskId = params.taskId;
-  console.log("taskId", taskId);
   
   // const [tasks, setTasks] = useState([]);
 
@@ -19,7 +18,6 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
   const fetchTasks = async () => {
     
     const response = await fetch(`http://localhost:3000/api/users/${userId}/tasks/${taskId}`);
-    // console.log(response);
     const data = await response.json();
     return data.tasks
   };
@@ -27,7 +25,6 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
   const fetchAssignedUsers = async () => {
     
     const response = await fetch(`http://localhost:3000/api/users/${userId}/assignedUsers`);
-    // console.log(response);
     const data = await response.json();
     return data.users
   };

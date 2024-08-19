@@ -65,46 +65,19 @@ export const config: NextAuthConfig = {
   basePath: "/api/auth/",
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      console.log("signIn")
-      console.log(user)
-      console.log("email")
-      console.log(email)
-      console.log("credentials")
-      console.log(credentials)
       return true
     },
     async jwt({ token, user, account, profile}) {
-      console.log("token")
-      console.log(token)
-      console.log("user")
-      console.log(user)
-      console.log("account")
-      console.log(account)
-      console.log("profile")
-      console.log(profile)
       const dbUser = await prisma.user.findFirst({
         where: { email: token.email ?? "" },
       });
-      console.log("dbUser")
-      console.log(dbUser)
       if (dbUser) {
         token.id = dbUser.id; // ユーザーのIDをトークンに含める
       }
       return token;
     },
     async session({ session, token, user }) {
-      console.log("sessionのtoken")
-      console.log(token)
-      console.log("session")
-      console.log(session)
-      console.log("user")
-      console.log(user)
-      // if (session.user) {
-      //   session.user.id = token.id as string;
-      // }
       session.user.id = token.id as string;
-      console.log("session")
-      console.log(session)
       return session;
     }
   },

@@ -27,9 +27,7 @@ export async function GET(
     request: Request,
     { params }: { params: { userId: string } }
 ) {
-    console.log(request)
     const userId = params.userId;
-    console.log("userId", userId);
     if (!userId) {
         return new Response(JSON.stringify({ error: 'userId is required' }), {
             status: 400,
@@ -37,7 +35,6 @@ export async function GET(
         });
     }
     const users = await getAssignedUsers(userId);
-    console.log(users);
     return new Response(JSON.stringify({ users }), {
         headers: { 'Content-Type': 'application/json' },
     });
@@ -51,7 +48,6 @@ export async function POST(
 ) {
     const userId = params.userId;
     const { assignedUserId } = await request.json();
-    console.log("userId", userId);
     if (!userId || !assignedUserId) {
         return new Response(JSON.stringify({ error: 'userId and assignedUserEmail are required' }), {
             status: 400,
@@ -79,7 +75,6 @@ export async function POST(
             assignedToId: assignedUser.id,
         },
     });
-    console.log(newAssignment);
     return new Response(JSON.stringify({ newAssignment }), {
         headers: { 'Content-Type': 'application/json' },
     });
