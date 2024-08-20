@@ -55,7 +55,7 @@ import Google from "next-auth/providers/google";
 
 import { PrismaClient } from "@prisma/client"
 import NextAuth, { NextAuthConfig } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// import { PrismaAdapter } from "@next-auth/prisma-adapter";
 const prisma = new PrismaClient()
 import authConfig from "@/lib/auth.config"
 
