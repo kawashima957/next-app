@@ -2,9 +2,29 @@
 
 import React, { useEffect, useState } from 'react';
 
+type User = {
+  name: string;
+};
+
+type SubTask = {
+  id: number;
+  title: string;
+  responsible: string;
+  deadline: string;
+  description: string;
+  user: User;
+};
+
+type Task = {
+  id: number;
+  title: string;
+  user: User;
+  subTasks: SubTask[];
+};
+
 // Start Generation Here
 const TaskCard = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
