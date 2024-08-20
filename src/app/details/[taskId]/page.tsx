@@ -28,8 +28,8 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
     return data.users
   };
 
-  const tasks: any = await fetchTasks();
-  const initialAssignedUsers: any = await fetchAssignedUsers();
+  const tasks: any[] = await fetchTasks();
+  const initialAssignedUsers: any[] = await fetchAssignedUsers();
   
   return (
     <div>
