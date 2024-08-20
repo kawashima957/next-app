@@ -44,7 +44,7 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
                 <p>Created by: {task.createUser.name}</p>
                 <div className="subtasks">
                   {task.subTasks.map((subTask: any) => (
-                    userId && <SubTaskCard userId={userId} subTask={subTask} taskId={taskId} initialAssignedUsers={initialAssignedUsers} /> // SubTaskCardコンポーネントを使用
+                    userId && <SubTaskCard key={subTask.id} userId={userId} subTask={subTask} taskId={taskId} initialAssignedUsers={initialAssignedUsers} /> // SubTaskCardコンポーネントを使用
                   ))}
                 </div>
               </div>
