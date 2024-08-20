@@ -1,5 +1,5 @@
 
-'use client';
+'use server';
 
 import { auth } from '@/lib/auth';
 import Link from 'next/link';
@@ -9,10 +9,7 @@ import TaskCreationForm from './_components/TaskCreationForm';
 const TaskCard = async () => {
   const session = await auth()
   const userId = session?.user?.id;
-  // const [tasks, setTasks] = useState([]);
 
-  // TODO: 'use client'と'use server'が被ってしまっているので、serviceフォルダにfetchの関数を分ける
-  // 'https://api.example.com/...'
   const fetchTasks = async () => {
     
     const response = await fetch(`http://localhost:3000/api/users/${userId}/tasks`);
@@ -22,13 +19,9 @@ const TaskCard = async () => {
 
   const tasks = await fetchTasks();
 
-  const onTaskCreate = async () => {
-    console.log("onTaskCreate")
-  }
-
   return (
     <div>
-      {userId && <TaskCreationForm userId={userId} onCreateTask={onTaskCreate}/>}
+      {userId && <TaskCreationForm userId={userId}/>}
       {tasks.map((task: any) => (
         <Link href={`/details/${task.id}`} key={task.id} style={{ textDecoration: 'none', color: 'inherit' }}>
           <div key={task.id} className="task-card">

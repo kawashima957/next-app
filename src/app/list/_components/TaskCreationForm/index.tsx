@@ -1,13 +1,15 @@
+'use client';
+
 import { useState } from 'react';
 
-export default function TaskCreationForm({ userId, onCreateTask }: { userId: string, onCreateTask: () => void }) {
+export default function TaskCreationForm({ userId }: { userId: string }) {
     const [taskdescription, setTaskdescription] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // エラーメッセージの状態を追加
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         console.log('taskdescription', taskdescription);
-        
+        setTaskdescription('');
     }
 
     return (

@@ -1,5 +1,5 @@
+'use server';
 
-// 'use client';
 import { auth } from '@/lib/auth';
 import SubTaskCard from './_components/SubTaskCard'; // SubTaskCardをインポート
 // import React, { useEffect, useState } from 'react';
@@ -11,7 +11,6 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
   const userId = session?.user?.id;
   const taskId = params.taskId;
   
-  // const [tasks, setTasks] = useState([]);
 
   // TODO: 'use client'と'use server'が被ってしまっているので、serviceフォルダにfetchの関数を分ける
   // 'https://api.example.com/...'
