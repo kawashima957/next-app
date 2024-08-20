@@ -16,14 +16,14 @@ const TaskCard = async ({params}: { params: { taskId: string } }) => {
   // 'https://api.example.com/...'
   const fetchTasks = async () => {
     
-    const response = await fetch(`http://localhost:3000/api/users/${userId}/tasks/${taskId}`);
+    const response = await fetch(`https://main.d3kknqrhe7d2sh.amplifyapp.com/api/users/${userId}/tasks/${taskId}`);
     const data = await response.json();
     return data.tasks
   };
 
   const fetchAssignedUsers = async () => {
     
-    const response = await fetch(`http://localhost:3000/api/users/${userId}/assignedUsers`);
+    const response = await fetch(`https://main.d3kknqrhe7d2sh.amplifyapp.com/api/users/${userId}/assignedUsers`);
     const data = await response.json();
     return data.users
   };

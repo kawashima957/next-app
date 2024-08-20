@@ -12,7 +12,7 @@ const TaskCard = async () => {
 
   const fetchTasks = async () => {
     
-    const response = await fetch(`http://localhost:3000/api/users/${userId}/tasks`);
+    const response = await fetch(`https://main.d3kknqrhe7d2sh.amplifyapp.com/api/users/${userId}/tasks`);
     const data = await response.json();
     return data.tasks
   };
