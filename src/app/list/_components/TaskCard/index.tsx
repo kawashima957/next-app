@@ -42,12 +42,12 @@ const TaskCard = () => {
 
   return (
     <div>
-      {tasks.map((task) => (
+      {tasks.map((task: any) => (
         <div key={task.id} className="task-card">
           <h2>{task.title}</h2>
           <p>Assigned to: {task.user.name}</p>
           <div className="subtasks">
-            {task.subTasks.map((subTask) => (
+            {task.subTasks.map((subTask: any) => (
               <div key={subTask.id} className="subtask-card">
                 <h3>{subTask.title}</h3>
                 <p>Responsible: {subTask.responsible}</p>
